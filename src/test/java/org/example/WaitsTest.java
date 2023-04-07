@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.List;
@@ -64,6 +65,7 @@ public class WaitsTest {
 
     @Test
     public void checkFilterTable(){
+        SoftAssert asert = new SoftAssert();
 
         //move to the table
         WebElement position = driver.findElement(By.id("controlled-mode"));
@@ -104,9 +106,10 @@ public class WaitsTest {
 
         presentationSleep();
 
-        Assert.assertTrue(containsLondon);
-        Assert.assertTrue(containsLasVegas);
-        Assert.assertFalse(containsCitiesStartsAnotherLetter);
+        asert.assertTrue(containsLondon);
+        asert.assertTrue(containsLasVegas);
+        asert.assertFalse(containsCitiesStartsAnotherLetter);
+        asert.assertAll();
     }
 
 }
